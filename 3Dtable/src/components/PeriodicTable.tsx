@@ -1,5 +1,22 @@
-import * as THREE from 'three';
+import { useState } from 'react';
+import { usePeriodicScene } from '../hooks/usePeriodicScene';
+import { Controls } from './Controls';
+import type { LayoutName } from '../three/PeriodicTableScene';
+import './PeriodicTable.css';
 
-import TWEEN from 'three/addons/libs/tween.module.js';
-import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
-import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
+export function PeriodicTable() {
+  const { containerRef, setLayout } = usePeriodicScene();
+  const [layout, setLayoutState] = useState<LayoutName>('table');
+
+  const handleChange = (next: LayoutName) => {
+    setLayoutState(next);
+    setLayout(next);
+  };
+
+  return (
+    <div className="periodic-table">
+      <div ref={containerRef} className="viewport" />
+      <Controls active={layout} onChange={handleChange} />
+    </div>
+  );
+}

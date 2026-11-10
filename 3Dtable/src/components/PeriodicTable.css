@@ -1,0 +1,70 @@
+.periodic-table {
+  position: fixed;
+  inset: 0;
+}
+
+.viewport {
+  position: absolute;
+  inset: 0;
+}
+
+.controls {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.controls button {
+  margin: 0 4px;
+}
+
+/* currently selected layout */
+.controls button.active {
+  background-color: rgba(0, 255, 255, 0.5);
+}
+
+/* element cards */
+.element {
+  width: 120px;
+  height: 160px;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  border: 1px solid rgba(127, 255, 255, 0.25);
+  font-family: Helvetica, sans-serif;
+  text-align: center;
+  line-height: normal;
+  cursor: default;
+}
+
+.element:hover {
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.75);
+  border: 1px solid rgba(127, 255, 255, 0.75);
+}
+
+.element .number {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 12px;
+  color: rgba(127, 255, 255, 0.75);
+}
+
+.element .symbol {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  font-size: 60px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+}
+
+.element .details {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  font-size: 12px;
+  color: rgba(127, 255, 255, 0.75);
+}
