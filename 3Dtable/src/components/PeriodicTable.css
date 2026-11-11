@@ -8,11 +8,29 @@
   inset: 0;
 }
 
-.controls {
+/* bottom layout */
+.bottom-bar {
   position: absolute;
   bottom: 20px;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  width: max-content;
+  z-index: 10;
+}
+
+/* controls */
+.controls {
+  position: static;
+  width: auto;
   text-align: center;
+  white-space: nowrap;
 }
 
 .controls button {
@@ -22,6 +40,38 @@
 /* currently selected layout */
 .controls button.active {
   background-color: rgba(0, 255, 255, 0.5);
+}
+
+/* colour bar */
+.colour-bar {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.colour-bar-segments {
+  display: flex;
+  width: 200px;
+  height: 12px;
+  gap: 2px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.colour-bar-segment {
+  flex: 1;
+  height: 100%;
+}
+
+.colour-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: white;
+  white-space: nowrap;
 }
 
 /* element cards */
