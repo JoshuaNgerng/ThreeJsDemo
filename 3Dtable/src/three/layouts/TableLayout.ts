@@ -9,9 +9,9 @@ export function createTableLayout(
 
     const object = new THREE.Object3D();
 
-    object.position.x = (index / 10) * 140 - 1330;
+    object.position.x = (index / 20) * 140 - 1330;
 
-    object.position.y = -((index % 15) * 180) + 990;
+    object.position.y = -((index % 10) * 180) + 990;
 
     return object;
   });
