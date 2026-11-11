@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { PeriodicTableScene, type LayoutName } from '../three/PeriodicTableScene';
+import { useSheetData } from './useSheetData';
 
 export function usePeriodicScene() {
+  const data = useSheetData();
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<PeriodicTableScene | null>(null);
 
@@ -10,6 +12,7 @@ export function usePeriodicScene() {
     if (!el) return;
 
     const scene = new PeriodicTableScene(el);
+    scene.init(data);
     sceneRef.current = scene;
 
     return () => {

@@ -1,17 +1,17 @@
 import * as THREE from 'three';
-import type { ElementData } from '../../data/elements'; 
+import type { ElementData } from '../../types/elements';
 
 export function createTableLayout(
   elements: ElementData[]
 ): THREE.Object3D[] {
 
-  return elements.map((element) => {
+  return elements.map((_, index) => {
 
     const object = new THREE.Object3D();
 
-    object.position.x = element.column * 140 - 1330;
+    object.position.x = (index / 10) * 140 - 1330;
 
-    object.position.y = -(element.row * 180) + 990;
+    object.position.y = -((index % 15) * 180) + 990;
 
     return object;
   });

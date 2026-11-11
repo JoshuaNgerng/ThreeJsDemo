@@ -3,12 +3,12 @@ import TWEEN from 'three/addons/libs/tween.module.js';
 import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
 
-import { elements } from '../data/elements';
 import { createElement } from './ElementFactory';
 import { createTableLayout } from './layouts/TableLayout';
 import { createSphereLayout } from './layouts/SphereLayout';
 import { createHelixLayout } from './layouts/HelixLayout';
 import { createGridLayout } from './layouts/GridLayout';
+import type { ElementData } from '../types/elements';
 
 export type LayoutName = 'table' | 'sphere' | 'helix' | 'grid';
 
@@ -31,20 +31,6 @@ export class PeriodicTableScene {
     this.camera = new THREE.PerspectiveCamera(40, w / h, 1, 10000);
     this.camera.position.z = 3000;
 
-    this.objects = elements.map((el, i) => {
-      const obj = createElement(el, i);
-      this.scene.add(obj);
-      return obj;
-    });
-
-    const count = this.objects.length;
-    this.targets = {
-      table: createTableLayout(elements),
-      sphere: createSphereLayout(count),
-      helix: createHelixLayout(count),
-      grid: createGridLayout(count),
-    };
-
     this.renderer.setSize(w, h);
     container.appendChild(this.renderer.domElement);
 
@@ -55,8 +41,31 @@ export class PeriodicTableScene {
 
     window.addEventListener('resize', this.onResize);
 
+    this.targets = {
+      table: [],
+      sphere: [],
+      helix: [],
+      grid: []
+    }
+  }
+
+  init(data: ElementData[]) {
+    this.objects = data.map((el) => {
+      const obj = createElement(el);
+      this.scene.add(obj);
+      return obj;
+    });
+
+    const count = this.objects.length;
+    this.targets = {
+      table: createTableLayout(data),
+      sphere: createSphereLayout(count),
+      helix: createHelixLayout(count),
+      grid: createGridLayout(count),
+    };
     this.animate();
     this.transform('table');
+    return this
   }
 
   transform(layout: LayoutName, duration = 2000) {
