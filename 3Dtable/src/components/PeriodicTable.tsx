@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { usePeriodicScene } from '../hooks/usePeriodicScene';
 import { Controls } from './Controls';
 import type { LayoutName } from '../three/PeriodicTableScene';
+import { Colour, interpolateColor } from '../services/colour';
 import './PeriodicTable.css';
 
 export function PeriodicTable() {
@@ -27,17 +28,15 @@ export function PeriodicTable() {
 /* find way to intergrate with ElementFactory later */
 
 function ColourBar() {
-  const red = "#EF3022";
-  const orange = "#FDCA35";
-  const green = "#3A9F4B";
+  const colour = new Colour();
   const colours = Array.from({ length: 15 }, (_, i) => {
     const t = i / 14;
 
     if (t <= 0.5) {
-      return interpolateColour(red, orange, t * 2);
+      return interpolateColor(colour.red, colour.orange, t * 2);
     }
 
-    return interpolateColour(orange, green, (t - 0.5) * 2);
+    return interpolateColor(colour.orange, colour.green, (t - 0.5) * 2);
   });
 
   return (
@@ -57,21 +56,4 @@ function ColourBar() {
       <span className="colour-label">HIGH</span>
     </div>
   );
-}
-
-function interpolateColour(
-  start: string,
-  end: string,
-  t: number
-) {
-  const a = start.match(/\w\w/g)!.map((x) => parseInt(x, 16));
-  const b = end.match(/\w\w/g)!.map((x) => parseInt(x, 16));
-
-  return `#${a
-    .map((v, i) =>
-      Math.round(v + (b[i] - v) * t)
-        .toString(16)
-        .padStart(2, "0")
-    )
-    .join("")}`;
 }
