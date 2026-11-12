@@ -19,7 +19,7 @@ export function usePeriodicScene() {
       scene.dispose();
       sceneRef.current = null;
     };
-  }, []);
+  }, [data]);   // data is cached forever (staleTime: Infinity), so this runs once per load
 
   const setLayout = useCallback((layout: LayoutName) => {
     sceneRef.current?.transform(layout);
