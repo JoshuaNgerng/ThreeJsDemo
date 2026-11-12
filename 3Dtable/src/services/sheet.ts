@@ -32,7 +32,6 @@ interface GoogleSheetsResponse {
 export async function fetchData(signal?: AbortSignal): Promise<ElementData[]> {
   const { spreadsheetId, apiKey } = GOOGLE_SHEETS_CONFIG;
   const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/DataTemplate!A1:Z1000?key=${apiKey}`
-  console.log(url)
   const response = await fetch(
       url,
       { signal }
