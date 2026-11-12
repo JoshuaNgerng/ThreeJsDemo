@@ -5,7 +5,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { AuthProvider } from "./auth/AuthProvider";
 import { DataGate } from "./components/DataGate";
 import { AuthGate } from "./components/AuthGate";
-import { GOOGLE_AUTH_CONFIG, GOOGLE_SHEETS_CONFIG } from "./config/google-sheet";
+import { GOOGLE_AUTH_CONFIG } from "./config/google-sheet";
 import App from "./App";
 import './index.css';
 
