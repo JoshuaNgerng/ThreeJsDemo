@@ -33,3 +33,31 @@ button:active {
   color: #000;
   background-color: rgba(0, 255, 255, 0.75);
 }
+
+.screen {
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.screen h2 {
+  margin: 0;
+}
+
+.screen p {
+  margin: 0;
+  max-width: 60ch;
+}
+
+.screen ul {
+  margin: 0;
+  padding-left: 1.2em;
+  text-align: left;
+}
+
