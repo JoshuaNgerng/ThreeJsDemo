@@ -2,6 +2,8 @@
 
 A React + Three.js app that loads people from a Google Sheet and shows them as 200 floating 3D cards. After signing in with Google, you can switch the cards between four animated layouts (table, sphere, double helix, grid) and fly around them with the mouse. Each card's colour reflects the person's net worth.
 
+## Live Demo https://main.dlhmoakrbac3p.amplifyapp.com/
+
 ## Features
 
 - **Google sign-in** gate (Sign in with Google) before any data is loaded
