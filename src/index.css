@@ -25,13 +25,24 @@ button {
   text-transform: uppercase;
 }
 
-button:hover {
-  background-color: rgba(0, 255, 255, 0.5);
+/* hover highlight only on devices that really hover (mouse, trackpad) */
+@media (hover: hover) {
+  button:hover {
+    background-color: rgba(0, 255, 255, 0.5);
+  }
 }
 
 button:active {
   color: #000;
   background-color: rgba(0, 255, 255, 0.75);
+}
+
+/* touch screens: bigger tap targets (after the base button rule so it wins) */
+@media (pointer: coarse) {
+  button {
+    min-height: 44px;
+    padding: 8px 14px;
+  }
 }
 
 .screen {

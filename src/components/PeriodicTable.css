@@ -6,36 +6,51 @@
 .viewport {
   position: absolute;
   inset: 0;
+  touch-action: none;                 /* stop the browser scrolling or zooming the page instead of the 3D view */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 /* bottom layout */
 .bottom-bar {
   position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
 
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;                 /* controls and legend stack on narrow screens */
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 12px 30px;
 
-  width: max-content;
-  z-index: 10;
+  pointer-events: none;            /* empty parts of the bar must not block dragging the 3D view */
+}
+
+.bottom-bar > * {
+  pointer-events: auto;
+}
+
+
+/* delete: .controls button { margin: 0 4px; } and the static/auto/nowrap lines */
+
+.colour-bar-segments {
+  width: clamp(120px, 40vw, 200px);   /* was a fixed 200px */
+  /* keep the other properties */
 }
 
 /* controls */
 .controls {
-  position: static;
-  width: auto;
-  text-align: center;
-  white-space: nowrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
 }
 
-.controls button {
-  margin: 0 4px;
-}
 
 /* currently selected layout */
 .controls button.active {
@@ -145,6 +160,23 @@
   line-height: 12px;                           /* equals the row height */
   color: rgba(127, 255, 255, 0.75);
 }
+
+/* hover glow only where hover exists */
+@media (hover: hover) {
+  .element:hover {
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.75);
+    border-color: rgba(127, 255, 255, 0.75);
+  }
+}
+
+/* phones: 200 glowing layers are heavy, so drop the shadow (must come after .element) */
+@media (pointer: coarse) {
+  .element {
+    box-shadow: none;
+  }
+}
+
+
 /*
 card            120 × 160   (border-box)
 border          1px each side  → 2
